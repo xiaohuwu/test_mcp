@@ -152,6 +152,7 @@ body {
 /* ===== 卡片 ===== */
 .card {
   position: relative;
+  flex-shrink: 0;
   background: linear-gradient(180deg, rgba(1,28,104,0.85) 0%, rgba(1,28,104,0.6) 50%, rgba(0,0,0,0) 100%);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
@@ -215,7 +216,6 @@ body {
   z-index: 1;
   font-size: 1.8rem;
   font-weight: 700;
-  text-shadow: 0 1px 1px rgba(0,0,0,0.8);
   line-height: 1.33;
 }
 .card-tabs {
@@ -243,16 +243,19 @@ body {
 
 /* ===== 卡片内容 ===== */
 .card-body {
-  padding: 1rem 1.2rem 1.2rem;
+  padding: 1.6rem 1.2rem 1.2rem;
   display: flex;
   flex-direction: column;
   gap: 0.8rem;
+}
+.card--tall .card-body {
+  gap: 1.2rem;
 }
 
 /* ===== 数据行 ===== */
 .stat-row {
   display: flex;
-  gap: 1rem;
+  gap: 1.6rem;
 }
 .stat-row--2 .stat-item { flex: 1; }
 .stat-row--3 .stat-item { flex: 1; }
@@ -319,34 +322,101 @@ body {
 }
 .chart-sm { width: 100%; height: 12rem; }
 .chart-md { width: 100%; height: 14rem; }
+.age-chart-wrap { width: 100%; }
+.chart-age-donut { width: 100%; height: 17rem; }
 
 /* ===== 性别区域 ===== */
 .gender-section {
   display: flex;
-  gap: 1rem;
-  align-items: center;
+  gap: 1.6rem;
+  align-items: stretch;
 }
-.gender-chart-wrap {
-  width: 12rem;
+.gender-left {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  flex: 1;
+}
+.gender-bars {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.8rem;
+  height: 5.7rem;
+}
+.gender-bar-row {
+  display: flex;
+  align-items: center;
+  gap: 0.2rem;
+}
+.gender-bar {
+  height: 1.8rem;
+  border-radius: 0.2rem;
+}
+.gender-bar--male {
+  background: linear-gradient(90deg, #28B7FF 0%, #80FFFF 100%);
+}
+.gender-bar--female {
+  background: linear-gradient(90deg, #288EF3 0%, #3BD8F7 100%);
+}
+.gender-bar-pct {
+  font-size: 1.2rem;
+  font-weight: 700;
   flex-shrink: 0;
 }
-.gender-chart-wrap .chart-sm { height: 10rem; }
-.gender-detail {
-  flex: 1;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 0.6rem 1.2rem;
+.gender-bar-pct--male {
+  color: #80FFFF;
+}
+.gender-bar-pct--female {
+  color: #3BD8F7;
+}
+.gender-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 .gender-item {
   display: flex;
   align-items: center;
+  gap: 0.2rem;
+}
+.num--gender {
+  font-size: 1.8rem;
+}
+.unit--gender {
+  font-size: 1.4rem;
+}
+.gender-right {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+.extra-stat-row {
+  display: flex;
+  align-items: flex-end;
+  gap: 0.8rem;
+}
+.extra-stat {
+  display: flex;
+  flex-direction: column;
   gap: 0.4rem;
-  flex-wrap: wrap;
+}
+.extra-pct {
+  display: flex;
+  align-items: flex-end;
+  padding-bottom: 0.2rem;
+}
+.num--pct {
+  font-size: 1.6rem;
+}
+.unit--pct {
+  font-size: 1.2rem;
 }
 .dot {
   width: 0.8rem;
   height: 0.8rem;
   border-radius: 50%;
+  flex-shrink: 0;
 }
 .dot--male { background: #28B7FF; }
 .dot--female { background: #FB9220; }
@@ -369,27 +439,124 @@ body {
   border-radius: 50%;
 }
 
-/* ===== 床位标签 ===== */
-.bed-status {
+/* ===== 床位概况 - 双列布局 ===== */
+.bed-overview {
+  flex-direction: row;
+  gap: 1.6rem;
+  padding: 1.2rem;
+}
+.bed-stats {
   display: flex;
-  gap: 0.6rem;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.8rem;
+  flex: 1;
+}
+.bed-stats-top {
+  display: flex;
   align-items: center;
 }
-.bed-tag {
+.bed-total {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  width: 11.1rem;
+  flex-shrink: 0;
+}
+.bed-breakdown {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+.bed-breakdown-row {
+  display: flex;
+  align-items: flex-end;
+  gap: 0.2rem;
+}
+.bed-breakdown-label,
+.bed-breakdown-unit {
   font-size: 1.2rem;
-  padding: 0.2rem 0.8rem;
-  border-radius: 0.4rem;
-  font-weight: 600;
+  font-weight: 700;
+  line-height: 1.33;
+  background: linear-gradient(270deg, #B7DBFF 0%, #A0C8FF 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
-.bed-tag--free {
-  background: rgba(5,227,229,0.15);
-  color: #1AF4D7;
-  border: 1px solid rgba(5,227,229,0.3);
+.bed-breakdown-num {
+  font-size: 1.6rem;
+  font-weight: 700;
+  line-height: 1;
+  background: linear-gradient(87deg, #91EDFF 0%, #7CCFFF 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
-.bed-tag--booked {
-  background: rgba(251,146,32,0.15);
-  color: #FBBE20;
-  border: 1px solid rgba(251,146,32,0.3);
+.bed-occupancy {
+  display: flex;
+  align-items: center;
+  gap: 0.2rem;
+}
+.bed-occupancy .num {
+  font-size: 1.8rem;
+}
+.bed-occupancy .unit {
+  font-size: 1.4rem;
+}
+.bed-monthly {
+  display: flex;
+}
+.bed-monthly-item {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+.bed-monthly-label {
+  font-size: 1.2rem;
+  font-weight: 700;
+  line-height: 1.5;
+  background: linear-gradient(270deg, #B7DBFF 0%, #A0C8FF 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.bed-monthly .num {
+  font-size: 1.6rem;
+}
+.bed-monthly .unit {
+  font-size: 1.2rem;
+}
+.bed-divider {
+  width: 1px;
+  flex-shrink: 0;
+  align-self: stretch;
+  background: rgba(62,156,255,0.1);
+}
+.bed-chart {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  flex: 1;
+  min-width: 0;
+}
+.bed-chart-body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+.bed-chart .legend-item {
+  font-size: 1.4rem;
+}
+.chart-bed-trend {
+  width: 100%;
+  flex: 1;
+  min-height: 10rem;
+}
+.legend-line {
+  display: inline-block;
+  width: 1.6rem;
+  height: 0.2rem;
+  border-radius: 0.1rem;
 }
 
 /* ===== 关键数据统计条 ===== */
@@ -412,24 +579,10 @@ body {
   justify-content: center;
 }
 .key-stat-icon {
-  width: 4rem;
-  height: 4rem;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(0,128,255,0.4) 0%, rgba(14,64,114,0.2) 100%);
-  border: 1px solid rgba(62,156,255,0.3);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-}
-.key-stat-icon::after {
-  content: '';
-  position: absolute;
-  width: 2rem;
-  height: 2rem;
-  background: rgba(91,203,255,0.6);
-  border-radius: 50%;
-  filter: blur(4px);
+  width: 5rem;
+  height: 5.6rem;
+  flex-shrink: 0;
+  object-fit: contain;
 }
 .key-stat-info {
   display: flex;

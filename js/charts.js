@@ -31,61 +31,48 @@ function init(id) {
   return echarts.init(dom);
 }
 
-/* ===== 1. 男女占比 - 环形图 ===== */
+/* ===== 1. 男女占比 - 已改为CSS条形比例，无需ECharts ===== */
+
+/* ===== 2. 年龄分布 - 环形图 ===== */
 (function() {
-  const chart = init('chart-gender');
+  const chart = init('chart-age');
   if (!chart) return;
+  const data = [
+    { value: 10,  name: '100岁及以上', itemStyle: { color: COLOR_LIST[0] } },
+    { value: 60,  name: '90-99岁',    itemStyle: { color: COLOR_LIST[1] } },
+    { value: 120, name: '80-89岁',    itemStyle: { color: COLOR_LIST[2] } },
+    { value: 80,  name: '70-79岁',    itemStyle: { color: COLOR_LIST[3] } },
+    { value: 45,  name: '60-69岁',    itemStyle: { color: COLOR_LIST[4] } },
+    { value: 30,  name: '60岁及以下',  itemStyle: { color: COLOR_LIST[5] } }
+  ];
   chart.setOption({
+    legend: {
+      orient: 'vertical',
+      left: 0,
+      top: 'center',
+      textStyle: { color: '#A0C8FF', fontSize: 12, fontWeight: 700, fontFamily: 'Douyin Sans, PingFang SC' },
+      itemWidth: 8, itemHeight: 8,
+      itemGap: 10,
+      icon: 'circle'
+    },
     series: [{
       type: 'pie',
-      radius: ['55%', '75%'],
-      center: ['50%', '50%'],
+      radius: ['45%', '70%'],
+      center: ['68%', '50%'],
       label: { show: false },
-      data: [
-        { value: 314, name: '男', itemStyle: { color: '#28B7FF' } },
-        { value: 218, name: '女', itemStyle: { color: '#FB9220' } }
-      ],
+      data: data,
       emphasis: { scale: false }
     }],
     graphic: [{
       type: 'text',
-      left: 'center',
+      left: '65%',
       top: '38%',
-      style: { text: '男女占比', fill: '#A2D1FF', fontSize: 10, textAlign: 'center' }
-    }]
-  });
-})();
-
-/* ===== 2. 年龄分布 - 横向柱状图 ===== */
-(function() {
-  const chart = init('chart-age');
-  if (!chart) return;
-  const categories = ['60岁及以下', '60-69岁', '70-79岁', '80-89岁', '90-99岁', '100岁及以上'];
-  const values = [30, 45, 80, 120, 60, 10];
-  chart.setOption({
-    grid: { left: 80, right: 30, top: 5, bottom: 5 },
-    xAxis: { type: 'value', show: false },
-    yAxis: {
-      type: 'category',
-      data: categories,
-      axisLine: { show: false },
-      axisTick: { show: false },
-      axisLabel: { ...AXIS_LABEL, fontSize: 11 }
-    },
-    series: [{
-      type: 'bar',
-      data: values,
-      barWidth: 8,
-      itemStyle: {
-        borderRadius: [0, 4, 4, 0],
-        color: COLORS.a0
-      },
-      showBackground: true,
-      backgroundStyle: { color: 'rgba(62,156,255,0.08)', borderRadius: [0, 4, 4, 0] },
-      label: {
-        show: true, position: 'right',
-        color: '#7CCFFF', fontSize: 10
-      }
+      style: { text: '201.39', fill: '#91EDFF', fontSize: 20, fontWeight: 700, textAlign: 'center' }
+    }, {
+      type: 'text',
+      left: '65%',
+      top: '56%',
+      style: { text: '单位: 人', fill: 'rgba(160,200,255,0.6)', fontSize: 12, textAlign: 'center' }
     }]
   });
 })();
@@ -162,7 +149,7 @@ function init(id) {
   if (!chart) return;
   const months = ['1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月'];
   chart.setOption({
-    grid: { left: 35, right: 10, top: 10, bottom: 20 },
+    grid: { left: 30, right: 8, top: 8, bottom: 20 },
     xAxis: {
       type: 'category',
       data: months,
@@ -180,25 +167,41 @@ function init(id) {
       {
         name: '入住', type: 'line', smooth: true,
         data: [45, 50, 38, 64, 55, 42, 60, 48, 52, 58, 46, 50],
-        lineStyle: { color: '#28B7FF', width: 2 },
-        itemStyle: { color: '#28B7FF' },
+        lineStyle: {
+          color: new echarts.graphic.LinearGradient(0, 0, 1, 0, [
+            { offset: 0, color: '#288EF3' },
+            { offset: 1, color: '#3BD8F7' }
+          ]),
+          width: 2,
+          shadowColor: 'rgba(59,190,247,0.4)',
+          shadowBlur: 9
+        },
+        itemStyle: { color: '#3BD8F7' },
         symbol: 'circle', symbolSize: 4,
         areaStyle: {
           color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
-            { offset: 0, color: 'rgba(40,183,255,0.3)' },
-            { offset: 1, color: 'rgba(40,183,255,0)' }
+            { offset: 0, color: 'rgba(59,190,247,0.1)' },
+            { offset: 1, color: 'rgba(59,190,247,0)' }
           ])
         }
       },
       {
         name: '退住', type: 'line', smooth: true,
         data: [20, 25, 18, 30, 22, 28, 15, 20, 25, 18, 22, 16],
-        lineStyle: { color: '#FB9220', width: 2 },
+        lineStyle: {
+          color: new echarts.graphic.LinearGradient(0, 0, 1, 0, [
+            { offset: 0, color: '#FB9220' },
+            { offset: 1, color: '#FBBE20' }
+          ]),
+          width: 2,
+          shadowColor: 'rgba(251,146,32,0.4)',
+          shadowBlur: 9
+        },
         itemStyle: { color: '#FB9220' },
         symbol: 'circle', symbolSize: 4,
         areaStyle: {
           color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
-            { offset: 0, color: 'rgba(251,146,32,0.2)' },
+            { offset: 0, color: 'rgba(251,146,32,0.1)' },
             { offset: 1, color: 'rgba(251,146,32,0)' }
           ])
         }

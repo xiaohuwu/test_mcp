@@ -72,29 +72,51 @@
           <div class="divider"></div>
           <!-- 男女占比 + 高龄/长照险 -->
           <div class="gender-section">
-            <div class="gender-chart-wrap">
-              <div id="chart-gender" class="chart-sm"></div>
+            <!-- 左列: 男女占比 -->
+            <div class="gender-left">
+              <span class="section-label">男女占比</span>
+              <div class="gender-bars">
+                <div class="gender-bar-row">
+                  <div class="gender-bar gender-bar--male" style="width:58%"></div>
+                  <span class="gender-bar-pct gender-bar-pct--male">58%</span>
+                </div>
+                <div class="gender-bar-row">
+                  <div class="gender-bar gender-bar--female" style="width:42%"></div>
+                  <span class="gender-bar-pct gender-bar-pct--female">42%</span>
+                </div>
+              </div>
+              <div class="gender-row">
+                <div class="gender-item">
+                  <span class="dot dot--male"></span>
+                  <span class="stat-label">男</span>
+                  <div class="stat-value"><span class="num num--gender">314</span><span class="unit unit--gender">人</span></div>
+                </div>
+                <div class="gender-item">
+                  <span class="dot dot--female"></span>
+                  <span class="stat-label">女</span>
+                  <div class="stat-value"><span class="num num--gender">218</span><span class="unit unit--gender">人</span></div>
+                </div>
+              </div>
             </div>
-            <div class="gender-detail">
-              <div class="gender-item">
-                <span class="dot dot--male"></span>
-                <span class="stat-label">男</span>
-                <div class="stat-value"><span class="num num--sm">314</span><span class="unit">人</span></div>
+            <!-- 右列: 高龄/长照险 -->
+            <div class="gender-right">
+              <div class="extra-stat-row">
+                <div class="extra-stat">
+                  <span class="stat-label">高龄</span>
+                  <div class="stat-value"><span class="num">56</span><span class="unit">人</span></div>
+                </div>
+                <div class="extra-pct">
+                  <span class="num num--pct">16</span><span class="unit unit--pct">%</span>
+                </div>
               </div>
-              <div class="gender-item">
-                <span class="dot dot--female"></span>
-                <span class="stat-label">女</span>
-                <div class="stat-value"><span class="num num--sm">218</span><span class="unit">人</span></div>
-              </div>
-              <div class="gender-item">
-                <span class="stat-label">高龄</span>
-                <div class="stat-value"><span class="num num--sm">56</span><span class="unit">人</span></div>
-                <span class="tag">16%</span>
-              </div>
-              <div class="gender-item">
-                <span class="stat-label">长照险</span>
-                <div class="stat-value"><span class="num num--sm">12</span><span class="unit">人</span></div>
-                <span class="tag">4.5%</span>
+              <div class="extra-stat-row">
+                <div class="extra-stat">
+                  <span class="stat-label">长照险</span>
+                  <div class="stat-value"><span class="num">12</span><span class="unit">人</span></div>
+                </div>
+                <div class="extra-pct">
+                  <span class="num num--pct">4.5</span><span class="unit unit--pct">%</span>
+                </div>
               </div>
             </div>
           </div>
@@ -102,7 +124,9 @@
           <!-- 年龄分布 -->
           <div class="chart-section">
             <span class="section-label">年龄分布</span>
-            <div id="chart-age" class="chart-md"></div>
+            <div class="age-chart-wrap">
+              <div id="chart-age" class="chart-age-donut"></div>
+            </div>
           </div>
           <div class="divider"></div>
           <!-- 风险防范 -->
@@ -126,7 +150,7 @@
       <!-- 关键数据统计条 -->
       <div class="key-stats">
         <div class="key-stat-item">
-          <div class="key-stat-icon icon-elder"></div>
+          <img class="key-stat-icon" src="assets/icons/icon-elder.svg" alt="长者">
           <div class="key-stat-info">
             <span class="key-stat-label">当前入住长者数</span>
             <span class="key-stat-num">313</span>
@@ -134,7 +158,7 @@
         </div>
         <div class="key-stat-divider"></div>
         <div class="key-stat-item">
-          <div class="key-stat-icon icon-team"></div>
+          <img class="key-stat-icon" src="assets/icons/icon-team.svg" alt="团队">
           <div class="key-stat-info">
             <span class="key-stat-label">服务团队</span>
             <span class="key-stat-num">52</span>
@@ -142,7 +166,7 @@
         </div>
         <div class="key-stat-divider"></div>
         <div class="key-stat-item">
-          <div class="key-stat-icon icon-device"></div>
+          <img class="key-stat-icon" src="assets/icons/icon-device.svg" alt="设备">
           <div class="key-stat-info">
             <span class="key-stat-label">智能设备数</span>
             <span class="key-stat-num">348</span>
@@ -150,7 +174,7 @@
         </div>
         <div class="key-stat-divider"></div>
         <div class="key-stat-item">
-          <div class="key-stat-icon icon-alarm"></div>
+          <img class="key-stat-icon" src="assets/icons/icon-alarm.svg" alt="报警">
           <div class="key-stat-info">
             <span class="key-stat-label">设备报警累计</span>
             <span class="key-stat-num">8989</span>
@@ -183,39 +207,47 @@
         <div class="card-header">
           <span class="card-title">床位概况</span>
         </div>
-        <div class="card-body">
-          <div class="stat-row stat-row--flex">
-            <div class="stat-item">
-              <span class="stat-label">床位数</span>
-              <div class="stat-value"><span class="num">579</span><span class="unit">床</span></div>
+        <div class="card-body bed-overview">
+          <!-- 左列：数据 -->
+          <div class="bed-stats">
+            <div class="bed-stats-top">
+              <div class="bed-total">
+                <span class="stat-label">床位数</span>
+                <div class="stat-value"><span class="num">579</span><span class="unit">床</span></div>
+              </div>
+              <div class="bed-breakdown">
+                <div class="bed-breakdown-row"><span class="bed-breakdown-label">入住</span><span class="bed-breakdown-num">34</span><span class="bed-breakdown-unit">床</span></div>
+                <div class="bed-breakdown-row"><span class="bed-breakdown-label">空闲</span><span class="bed-breakdown-num">34</span><span class="bed-breakdown-unit">床</span></div>
+                <div class="bed-breakdown-row"><span class="bed-breakdown-label">预定</span><span class="bed-breakdown-num">34</span><span class="bed-breakdown-unit">床</span></div>
+              </div>
             </div>
-            <div class="bed-status">
-              <span class="bed-tag bed-tag--free">空闲</span>
-              <span class="bed-tag bed-tag--booked">预定</span>
-            </div>
-          </div>
-          <div class="stat-row stat-row--3">
-            <div class="stat-item">
+            <div class="bed-occupancy">
               <span class="stat-label">入住率</span>
               <div class="stat-value"><span class="num">89.98</span><span class="unit">%</span></div>
             </div>
-            <div class="stat-item">
-              <span class="stat-label">当月新增入住</span>
-              <div class="stat-value"><span class="num">12</span><span class="unit">人</span></div>
-            </div>
-            <div class="stat-item">
-              <span class="stat-label">当月退住</span>
-              <div class="stat-value"><span class="num">12</span><span class="unit">人</span></div>
+            <div class="bed-monthly">
+              <div class="bed-monthly-item">
+                <span class="bed-monthly-label">当月新增入住</span>
+                <div class="stat-value"><span class="num">12</span><span class="unit">人</span></div>
+              </div>
+              <div class="bed-monthly-item">
+                <span class="bed-monthly-label">当月退住</span>
+                <div class="stat-value"><span class="num">12</span><span class="unit">人</span></div>
+              </div>
             </div>
           </div>
-          <div class="divider"></div>
-          <div class="chart-section">
+          <!-- 竖线分隔 -->
+          <div class="bed-divider"></div>
+          <!-- 右列：趋势图 -->
+          <div class="bed-chart">
             <span class="section-label">入住退住人数趋势</span>
-            <div class="chart-legend">
-              <span class="legend-item"><i class="legend-dot" style="background:#28B7FF"></i>入住</span>
-              <span class="legend-item"><i class="legend-dot" style="background:#FB9220"></i>退住</span>
+            <div class="bed-chart-body">
+              <div class="chart-legend">
+                <span class="legend-item"><i class="legend-line" style="background:linear-gradient(270deg,#3BD8F7,#288EF3)"></i>入住</span>
+                <span class="legend-item"><i class="legend-line" style="background:linear-gradient(90deg,#FB9220,#FBBE20)"></i>退住</span>
+              </div>
+              <div id="chart-bed-trend" class="chart-bed-trend"></div>
             </div>
-            <div id="chart-bed-trend" class="chart-md"></div>
           </div>
         </div>
         <div class="card-border-deco"></div>
