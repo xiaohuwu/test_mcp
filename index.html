@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=1920">
+  <title>智慧养老院数字看板</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="dashboard">
+  <!-- 背景层 -->
+  <div class="bg-layer"></div>
+
+  <!-- 顶部标题栏 -->
+  <header class="header">
+    <div class="header-deco-left"></div>
+    <h1 class="header-title">智慧养老院数字看板</h1>
+    <div class="header-deco-right"></div>
+  </header>
+
+  <!-- 主内容区 -->
+  <div class="main-content">
+
+    <!-- ========== 左栏 ========== -->
+    <div class="col col-left">
+
+      <!-- 咨询概况 -->
+      <div class="card">
+        <div class="card-header">
+          <span class="card-title">咨询概况</span>
+        </div>
+        <div class="card-body">
+          <div class="stat-row stat-row--3">
+            <div class="stat-item">
+              <span class="stat-label">累计咨询数</span>
+              <div class="stat-value"><span class="num">1121</span><span class="unit">人</span></div>
+            </div>
+            <div class="stat-item">
+              <span class="stat-label">转化率</span>
+              <div class="stat-value"><span class="num">32</span><span class="unit">%</span></div>
+            </div>
+            <div class="stat-item">
+              <span class="stat-label">当月咨询数</span>
+              <div class="stat-value"><span class="num">36</span><span class="unit">人</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="card-border-deco"></div>
+      </div>
+
+      <!-- 长者概况 -->
+      <div class="card card--tall">
+        <div class="card-header">
+          <span class="card-title">长者概况</span>
+          <div class="card-tabs">
+            <span class="card-tab active">入住</span>
+            <span class="card-tab">建档</span>
+          </div>
+        </div>
+        <div class="card-body">
+          <!-- 基础数据 -->
+          <div class="stat-row stat-row--2">
+            <div class="stat-item">
+              <span class="stat-label">长者人数</span>
+              <div class="stat-value"><span class="num">1213131</span><span class="unit">人</span></div>
+            </div>
+            <div class="stat-item">
+              <span class="stat-label">长者平均年龄</span>
+              <div class="stat-value"><span class="num">76</span><span class="unit">岁</span></div>
+            </div>
+          </div>
+          <div class="divider"></div>
+          <!-- 男女占比 + 高龄/长照险 -->
+          <div class="gender-section">
+            <div class="gender-chart-wrap">
+              <div id="chart-gender" class="chart-sm"></div>
+            </div>
+            <div class="gender-detail">
+              <div class="gender-item">
+                <span class="dot dot--male"></span>
+                <span class="stat-label">男</span>
+                <div class="stat-value"><span class="num num--sm">314</span><span class="unit">人</span></div>
+              </div>
+              <div class="gender-item">
+                <span class="dot dot--female"></span>
+                <span class="stat-label">女</span>
+                <div class="stat-value"><span class="num num--sm">218</span><span class="unit">人</span></div>
+              </div>
+              <div class="gender-item">
+                <span class="stat-label">高龄</span>
+                <div class="stat-value"><span class="num num--sm">56</span><span class="unit">人</span></div>
+                <span class="tag">16%</span>
+              </div>
+              <div class="gender-item">
+                <span class="stat-label">长照险</span>
+                <div class="stat-value"><span class="num num--sm">12</span><span class="unit">人</span></div>
+                <span class="tag">4.5%</span>
+              </div>
+            </div>
+          </div>
+          <div class="divider"></div>
+          <!-- 年龄分布 -->
+          <div class="chart-section">
+            <span class="section-label">年龄分布</span>
+            <div id="chart-age" class="chart-md"></div>
+          </div>
+          <div class="divider"></div>
+          <!-- 风险防范 -->
+          <div class="chart-section">
+            <span class="section-label">风险防范</span>
+            <div id="chart-risk" class="chart-md"></div>
+          </div>
+          <div class="divider"></div>
+          <!-- 现存疾病分布 -->
+          <div class="chart-section">
+            <span class="section-label">现存疾病分布</span>
+            <div id="chart-disease" class="chart-md"></div>
+          </div>
+        </div>
+        <div class="card-border-deco"></div>
+      </div>
+    </div>
+
+    <!-- ========== 中心区域 ========== -->
+    <div class="col col-center">
+      <!-- 关键数据统计条 -->
+      <div class="key-stats">
+        <div class="key-stat-item">
+          <div class="key-stat-icon icon-elder"></div>
+          <div class="key-stat-info">
+            <span class="key-stat-label">当前入住长者数</span>
+            <span class="key-stat-num">313</span>
+          </div>
+        </div>
+        <div class="key-stat-divider"></div>
+        <div class="key-stat-item">
+          <div class="key-stat-icon icon-team"></div>
+          <div class="key-stat-info">
+            <span class="key-stat-label">服务团队</span>
+            <span class="key-stat-num">52</span>
+          </div>
+        </div>
+        <div class="key-stat-divider"></div>
+        <div class="key-stat-item">
+          <div class="key-stat-icon icon-device"></div>
+          <div class="key-stat-info">
+            <span class="key-stat-label">智能设备数</span>
+            <span class="key-stat-num">348</span>
+          </div>
+        </div>
+        <div class="key-stat-divider"></div>
+        <div class="key-stat-item">
+          <div class="key-stat-icon icon-alarm"></div>
+          <div class="key-stat-info">
+            <span class="key-stat-label">设备报警累计</span>
+            <span class="key-stat-num">8989</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 中心可视化区域（占位） -->
+      <div class="center-visual">
+        <div class="center-visual-placeholder">
+          <div class="map-glow"></div>
+        </div>
+      </div>
+
+      <!-- 底部导航 Tab -->
+      <div class="center-nav">
+        <span class="center-nav-tab active">机构介绍</span>
+        <span class="center-nav-tab">机构视频</span>
+        <span class="center-nav-tab">智慧可视化定位</span>
+        <span class="center-nav-tab">智能设备分布</span>
+        <span class="center-nav-tab">智慧居室</span>
+      </div>
+    </div>
+
+    <!-- ========== 右栏 ========== -->
+    <div class="col col-right">
+
+      <!-- 床位概况 -->
+      <div class="card">
+        <div class="card-header">
+          <span class="card-title">床位概况</span>
+        </div>
+        <div class="card-body">
+          <div class="stat-row stat-row--flex">
+            <div class="stat-item">
+              <span class="stat-label">床位数</span>
+              <div class="stat-value"><span class="num">579</span><span class="unit">床</span></div>
+            </div>
+            <div class="bed-status">
+              <span class="bed-tag bed-tag--free">空闲</span>
+              <span class="bed-tag bed-tag--booked">预定</span>
+            </div>
+          </div>
+          <div class="stat-row stat-row--3">
+            <div class="stat-item">
+              <span class="stat-label">入住率</span>
+              <div class="stat-value"><span class="num">89.98</span><span class="unit">%</span></div>
+            </div>
+            <div class="stat-item">
+              <span class="stat-label">当月新增入住</span>
+              <div class="stat-value"><span class="num">12</span><span class="unit">人</span></div>
+            </div>
+            <div class="stat-item">
+              <span class="stat-label">当月退住</span>
+              <div class="stat-value"><span class="num">12</span><span class="unit">人</span></div>
+            </div>
+          </div>
+          <div class="divider"></div>
+          <div class="chart-section">
+            <span class="section-label">入住退住人数趋势</span>
+            <div class="chart-legend">
+              <span class="legend-item"><i class="legend-dot" style="background:#28B7FF"></i>入住</span>
+              <span class="legend-item"><i class="legend-dot" style="background:#FB9220"></i>退住</span>
+            </div>
+            <div id="chart-bed-trend" class="chart-md"></div>
+          </div>
+        </div>
+        <div class="card-border-deco"></div>
+      </div>
+
+      <!-- 等级分布 -->
+      <div class="card">
+        <div class="card-header">
+          <span class="card-title">等级分布</span>
+        </div>
+        <div class="card-body">
+          <div class="chart-section">
+            <span class="section-label">能力等级分布</span>
+            <div id="chart-ability" class="chart-md"></div>
+          </div>
+          <div class="divider"></div>
+          <div class="chart-section">
+            <span class="section-label">护理等级分布</span>
+            <div id="chart-nursing" class="chart-md"></div>
+          </div>
+        </div>
+        <div class="card-border-deco"></div>
+      </div>
+
+      <!-- 服务团队 -->
+      <div class="card">
+        <div class="card-header">
+          <span class="card-title">服务团队</span>
+        </div>
+        <div class="card-body">
+          <div class="stat-row stat-row--grid">
+            <div class="stat-item">
+              <span class="stat-label">团队总数</span>
+              <div class="stat-value"><span class="num">52</span><span class="unit">人</span></div>
+            </div>
+            <div class="stat-item">
+              <span class="stat-label">大专及以上</span>
+              <div class="stat-value"><span class="num">4</span><span class="unit">人</span></div>
+            </div>
+            <div class="stat-item">
+              <span class="stat-label">持证上岗人员</span>
+              <div class="stat-value"><span class="num">10</span><span class="unit">人</span></div>
+            </div>
+            <div class="stat-item">
+              <span class="stat-label">平均年龄</span>
+              <div class="stat-value"><span class="num">32</span><span class="unit">岁</span></div>
+            </div>
+            <div class="stat-item">
+              <span class="stat-label">上岗培训人员</span>
+              <div class="stat-value"><span class="num">10</span><span class="unit">人</span></div>
+            </div>
+          </div>
+          <div class="divider"></div>
+          <div class="chart-section">
+            <span class="section-label">服务人员部门分布</span>
+            <div id="chart-dept" class="chart-sm"></div>
+          </div>
+        </div>
+        <div class="card-border-deco"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== 底部区域 ========== -->
+  <div class="bottom-row">
+
+    <!-- 智能设备概况 -->
+    <div class="card card--bottom">
+      <div class="card-header">
+        <span class="card-title">智能设备概况</span>
+      </div>
+      <div class="card-body">
+        <div class="stat-row stat-row--3">
+          <div class="stat-item">
+            <span class="stat-label">智能设备总数</span>
+            <div class="stat-value"><span class="num">348</span><span class="unit">台</span></div>
+          </div>
+          <div class="stat-item">
+            <span class="stat-label">正常</span>
+            <div class="stat-value"><span class="num num--green">314</span><span class="unit">台</span></div>
+          </div>
+          <div class="stat-item">
+            <span class="stat-label">异常</span>
+            <div class="stat-value"><span class="num num--red">34</span><span class="unit">台</span></div>
+          </div>
+        </div>
+        <div class="chart-section">
+          <span class="section-label">智能设备数 <span class="unit-hint">单位: 台</span></span>
+          <div id="chart-device" class="chart-md"></div>
+        </div>
+      </div>
+      <div class="card-border-deco"></div>
+    </div>
+
+    <!-- 智能预警统计 -->
+    <div class="card card--bottom card--wide">
+      <div class="card-header">
+        <span class="card-title">智能预警统计</span>
+      </div>
+      <div class="card-body bottom-alert-body">
+        <div class="alert-top">
+          <div class="alert-summary">
+            <div class="stat-item">
+              <span class="stat-label">预警事件</span>
+              <div class="stat-value"><span class="num">8989</span><span class="unit">次</span></div>
+            </div>
+            <div class="alert-sub-stats">
+              <div class="stat-item stat-item--sm">
+                <span class="stat-label">当月紧急事件</span>
+                <div class="stat-value"><span class="num num--sm">34</span><span class="unit">次</span></div>
+              </div>
+              <div class="stat-item stat-item--sm">
+                <span class="stat-label">当月重大事件</span>
+                <div class="stat-value"><span class="num num--sm">89</span><span class="unit">次</span></div>
+              </div>
+              <div class="stat-item stat-item--sm">
+                <span class="stat-label">当月一般事件</span>
+                <div class="stat-value"><span class="num num--sm">3</span><span class="unit">次</span></div>
+              </div>
+            </div>
+          </div>
+          <div class="alert-rate">
+            <div class="stat-item">
+              <span class="stat-label">预警事件处理率</span>
+              <div class="stat-value"><span class="num">99.21</span><span class="unit">%</span></div>
+            </div>
+            <div class="stat-item">
+              <span class="stat-label">平均响应时间</span>
+              <div class="stat-value"><span class="num">36</span><span class="unit">s</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="alert-charts">
+          <div class="chart-section">
+            <span class="section-label">预警事件类型统计</span>
+            <div id="chart-alert-type" class="chart-md"></div>
+          </div>
+          <div class="chart-section">
+            <span class="section-label">预警事件等级分布</span>
+            <div id="chart-alert-level" class="chart-sm"></div>
+          </div>
+        </div>
+      </div>
+      <div class="card-border-deco"></div>
+    </div>
+
+    <!-- 预警信息 -->
+    <div class="card card--bottom">
+      <div class="card-header">
+        <span class="card-title">预警信息</span>
+        <div class="card-tabs">
+          <span class="card-tab active">全部</span>
+          <span class="card-tab">未处理</span>
+          <span class="card-tab">已处理</span>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="alert-list">
+          <div class="alert-item">
+            <div class="alert-time">
+              <span class="alert-date">2026-03-22</span>
+              <span class="alert-clock">12:42:13</span>
+            </div>
+            <div class="alert-info">
+              <span class="alert-source">NBloT绑定床位-2</span>
+              <span class="alert-desc">心率/呼吸过高</span>
+            </div>
+            <span class="alert-status alert-status--pending">处理</span>
+          </div>
+          <div class="alert-item">
+            <div class="alert-time">
+              <span class="alert-date">2026-03-22</span>
+              <span class="alert-clock">12:38:05</span>
+            </div>
+            <div class="alert-info">
+              <span class="alert-source">人体活动监测雷达</span>
+              <span class="alert-desc">失能中心-101</span>
+            </div>
+            <span class="alert-status alert-status--done">已处理</span>
+          </div>
+          <div class="alert-item">
+            <div class="alert-time">
+              <span class="alert-date">2026-03-22</span>
+              <span class="alert-clock">12:35:21</span>
+            </div>
+            <div class="alert-info">
+              <span class="alert-source">超脑</span>
+              <span class="alert-desc">院区边界越界</span>
+            </div>
+            <span class="alert-status alert-status--done">已处理</span>
+          </div>
+          <div class="alert-item">
+            <div class="alert-time">
+              <span class="alert-date">2026-03-22</span>
+              <span class="alert-clock">12:30:44</span>
+            </div>
+            <div class="alert-info">
+              <span class="alert-source">床头终端</span>
+              <span class="alert-desc">呼叫报警</span>
+            </div>
+            <span class="alert-status alert-status--pending">处理</span>
+          </div>
+          <div class="alert-item">
+            <div class="alert-time">
+              <span class="alert-date">2026-03-22</span>
+              <span class="alert-clock">12:25:10</span>
+            </div>
+            <div class="alert-info">
+              <span class="alert-source">无线紧急按钮</span>
+              <span class="alert-desc">呼叫报警</span>
+            </div>
+            <span class="alert-status alert-status--done">已处理</span>
+          </div>
+        </div>
+      </div>
+      <div class="card-border-deco"></div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js"></script>
+<script src="js/charts.js"></script>
+</body>
+</html>
